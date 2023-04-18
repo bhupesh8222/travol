@@ -45,6 +45,3 @@ even if it has to stretch the image or cut a little bit off one of the edges. co
  background-size: contain;
  
 LAST VERSION OF YELPCAMP!!
-
-AIzaSyBzmdo-hXj2KgiLeiBEAryTOa-El7xwo2Q
-API KEY
