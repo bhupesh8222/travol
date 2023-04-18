@@ -9,7 +9,7 @@ var mongoose = require("mongoose");
 var campModel = require("./models/campground");
 var commentModel = require('./models/comments.js')
 var flash = require("connect-flash");
-
+var path = require("path");
 
 app.use(flash()); //flash() is function.
 
@@ -59,7 +59,7 @@ passport.use(new passportLocal(userModel.authenticate()));
 passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
 
-
+app.use(express.static(path.join(__dirname, '/views')));
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use('/css', express.static('css'));
 //We are using the css folder for retrieving the css files
