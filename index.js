@@ -22,12 +22,7 @@ var userModel = require("./models/user.js");
 //index
 
 
-//mongodb://localhost:27017/campp
-//MONGOOSE CONFIG
-/*mongoose.connect("mongodb+srv://bhupesh8222:bhupesh8222@cluster0.pd8xh.mongodb.net/mydatabvase?retryWrites=true&w=majority", {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-});*/
+
 
 const URI = process.env.MONGO_URL;
 console.log("URI", URI);
@@ -63,44 +58,6 @@ app.use(passport.session());
 passport.use(new passportLocal(userModel.authenticate()));
 passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
-
-
-//Method to delete the record 
-/*campModel.deleteOne({ name: "Chandratal Lake, Himachal Pradesh" }, function() {
-    console.log('Deleted!!');
-});*/
-//Saving to the database
-
-
-
-/*campModel.create({
-    name: "Camp Exotica, Kullu",
-    img: "https://www.holidify.com/images/cmsuploads/compressed/tent-1208201_1920_20190212172038.jpg",
-    description: "The Camp Exotica is a perfect weekend getaway option located in Kullu in the Manali district of Himachal Pradesh. The accommodation provided is world class and the tents simply leave you connecting with nature like never before. The location of these tents is such that it gives a panoramic view of the surrounding mountains. The food provided is of fine quality and the incredible view will simply leave you in awe of this adventure. Make sure to take out time for this pleasure full camping trip."
-}, function(error, campgroundd) {
-    if (error) {
-        console.log("Error is there" + error);
-    } //else {
-    //console.log("Saved successfully" + campgroundd);
-    //}
-})*/
-
-/*commentModel.create({
-    text: "I love Ramayan!!",
-    author: "Bhupesh X"
-}, function(error, created) {
-    campModel.findOne({ name: "Spiti Valley, Himachal Pradesh" }, function(error, found) {
-        found.comment.push(created);
-        found.save()
-    })
-})*/
-
-/*var id = "5ea7b9f0bcd79f248019ecf7";
-campModel.findById(id, function(error, camp) {
-    camp.comment.pop();
-    camp.save();
-})*/
-
 
 
 app.use(bodyparser.urlencoded({ extended: true }));
