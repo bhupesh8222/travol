@@ -66,6 +66,8 @@ app.use('/css', express.static('css'));
 
 app.use('/partials', express.static('partials'));
 
+//reverted back
+
 //Whatever function is passed here will be called on every route, this is a middleware
 app.use(function (req, res, next) {
     //res.locals.userName will be the variable to be passed.  //req.user contains the details of the user.
