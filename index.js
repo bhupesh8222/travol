@@ -61,12 +61,13 @@ passport.deserializeUser(userModel.deserializeUser());
 
 app.use(express.static(path.join(__dirname, '/views')));
 app.use(bodyparser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '/css')));
 app.use('/css', express.static('css'));
 //We are using the css folder for retrieving the css files
 
 app.use('/partials', express.static('partials'));
 
-//reverted back
+//reverted
 
 //Whatever function is passed here will be called on every route, this is a middleware
 app.use(function (req, res, next) {
