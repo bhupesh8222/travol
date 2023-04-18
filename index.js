@@ -1,4 +1,4 @@
-//require('dotenv').config()
+require('dotenv').config()
 var express = require('express');
 var request = require('request');
 var bodyparser = require('body-parser');
@@ -29,7 +29,8 @@ var userModel = require("./models/user.js");
     useNewUrlParser: true
 });*/
 
-const URI = "mongodb+srv://bhupesh8222:bhupesh8222@cluster0.pd8xh.mongodb.net/mydatabvase?retryWrites=true&w=majority";
+const URI = process.env.MONGO_URL;
+console.log("URI", URI);
 
 mongoose.connect(URI, { useUnifiedTopology: true, useNewUrlParser: true })
     .then((res) => {
@@ -40,18 +41,7 @@ mongoose.connect(URI, { useUnifiedTopology: true, useNewUrlParser: true })
         console.log("error : " + err);
     });
 
-/*const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://bhupesh8222:bhupesh8222@cluster0.pd8xh.mongodb.net/mydatabvase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-    const collection = client.db("test").collection("devices");
-    // perform actions on the collection object
-    client.close();
-});
 
-mongoose.connection.once("open", function() {
-    console.log("Connected to the database!!!");
-})*/
 
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
@@ -120,7 +110,7 @@ app.use('/css', express.static('css'));
 app.use('/partials', express.static('partials'));
 
 //Whatever function is passed here will be called on every route, this is a middleware
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     //res.locals.userName will be the variable to be passed.  //req.user contains the details of the user.
     res.locals.currentUser = req.user;
     res.locals.error = req.flash("error");
@@ -148,6 +138,6 @@ app.use("/camps/:id/comments", commentroutes); //we will need to merge params.
 app.use(authroutes);
 
 const port = process.env.PORT || 3000;
-app.listen(port, function() {
+app.listen(port, function () {
     console.log("SERVER HAS STARTED!!");
 });
